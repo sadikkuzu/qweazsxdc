@@ -11,5 +11,11 @@ repos:
     rev: 'v1.0'
     hooks:
     -   id: fmt
+        language: rust
+        types: [rust]
     -   id: cargo-check
+        language: rust
+        types: [rust]
     -   id: clippy
+        language: rust
+        types: [rust]
