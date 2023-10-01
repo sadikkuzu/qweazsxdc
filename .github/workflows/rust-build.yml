@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Compile
         id: compile
-        uses: rust-build/rust-build.action@v1
+        uses: rust-build/rust-build.action@v1.4.3
         with:
           RUSTTARGET: x86_64-unknown-linux-musl
           UPLOAD_MODE: none
