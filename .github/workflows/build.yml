@@ -1,0 +1,47 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+
+    - name: Build Rust Application
+      run: cargo build --release
+
+    - name: Archive Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: qweazsxdc-artifact
+        path: target/release/qweazsxdc  # Adjust the path to your binary
+    
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: qweazsxdc-artifact
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/release/qweazsxdc  # Adjust the path to your binary
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
