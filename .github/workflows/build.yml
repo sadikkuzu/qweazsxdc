@@ -1,8 +1,9 @@
 name: Build and Release
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+  # release:
+  #   types: [published]
 
 jobs:
   build:
@@ -26,7 +27,7 @@ jobs:
       with:
         name: qweazsxdc-artifact
         path: target/release/qweazsxdc  # Adjust the path to your binary
-    
+
   release:
     needs: build
     runs-on: ubuntu-latest
