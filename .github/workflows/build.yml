@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Rust
       uses: actions-rs/toolchain@88dc2356392166efad76775c878094f4e83ff746  # @v1
@@ -23,7 +23,7 @@ jobs:
       run: cargo build --release
 
     - name: Archive Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: qweazsxdc-artifact
         path: target/release/qweazsxdc  # Adjust the path to your binary
@@ -34,13 +34,13 @@ jobs:
 
     steps:
     - name: Download Artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: qweazsxdc-artifact
 
     - name: Create Release
       id: create_release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: target/release/qweazsxdc  # Adjust the path to your binary
       env:
